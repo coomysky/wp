@@ -66,7 +66,7 @@ done
 
 printf "\t%s\n" \
   "=======================================" \
-  "    Begin WordPress Configuration" \
+  "    Begin WordPress Configuration 55555" \
   "======================================="
 
 

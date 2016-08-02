@@ -1,7 +1,7 @@
 version: '2'
 services:
   wordpress:
-    image: visiblevc/wordpress:latest
+    image: coomy/wp:latest
     links:
       - db
     ports:
@@ -10,9 +10,10 @@ services:
     volumes:
       - ./data:/data
     environment:
-      DB_NAME: wordpress
+      DB_NAME: tests
       DB_PASS: root
       PLUGINS: akismet
+      DEVELOPMENT_FOLDER: test22
   db:
     image: mysql:5.7 # or mariadb
     ports:
