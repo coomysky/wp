@@ -16,10 +16,12 @@ RUN curl \
     && chmod +x /usr/local/bin/wp /run.sh \
     && sed -i "s/AllowOverride None/AllowOverride All/g" /etc/apache2/apache2.conf \
     && a2enmod rewrite \
-    && service apache2 restart
+    && service apache2 restart \
+    && mkdir -p $HOME/start
 
-COPY run.sh $HOME/start/
+EXPOSE 80 443
+
+COPY run.sh /root/start/
 
 # Run the server
-EXPOSE 80 443
-CMD ["$HOME/start/run.sh"]
+CMD ["bash", "/root/start/run.sh"]
