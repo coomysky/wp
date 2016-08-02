@@ -140,7 +140,7 @@ printf "Done!\n"
 if [ "$DEVELOPMENT_FOLDER" != false ]; then
   printf "=> test"
 else
-  printf "=> Oops!"
+  printf "=> Oops!Ha"
 # Install Plugins
 # ---------------
 if [ "$PLUGINS" ]; then
