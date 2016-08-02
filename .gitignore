@@ -1,0 +1,30 @@
+# File system junk files
+Desktop.ini
+Thumbs.db
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+.apdisk
+.fseventsd
+
+# Editor files
+*.sublime-*
+*.swp
+.c9
+.sass-cache/
+
+node_modules
+app/themes/*
+!app/themes/thevoux-wp-child
+!app/themes/thevoux-wp
+app/themes/thevoux-wp-child/.sass-cache
+app/plugins/*
+!app/plugins/js_composer
+!app/plugins/usp-pro
+!app/plugins/wpai-woocomerce-add-on
+!app/plugins/wpai-acf-add-on
+!app/plugins/wp-all-import-pro
+!app/plugins/algoliasearch-wordpress
+app/uploads/
+data
