@@ -11,6 +11,7 @@
   BEFORE_URL=$(echo "$SEARCH_REPLACE" | cut -d ',' -f 1) && \
   AFTER_URL=$(echo "$SEARCH_REPLACE" | cut -d ',' -f 2) || \
   SEARCH_REPLACE=false
+[ "$DEVELOPMENT_FOLDER" ]
 
 ERROR () {
   echo -e "\n=> $(tput -T xterm setaf 1)$(tput -T xterm bold)ERROR$(tput -T xterm sgr 0) (Line $1): $2.";
@@ -133,9 +134,13 @@ find /app -type f -exec chmod 644 {} \;
 mkdir -p /app/wp-content/uploads
 chmod -R 775 /app/wp-content/uploads && \
   chown -R :docker /app/wp-content/uploads
+
 printf "Done!\n"
 
-
+if [ "$DEVELOPMENT_FOLDER" != false ]; then
+  printf "=> test"
+else
+  printf "=> Oops!"
 # Install Plugins
 # ---------------
 if [ "$PLUGINS" ]; then
