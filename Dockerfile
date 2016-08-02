@@ -19,7 +19,7 @@ RUN curl \
     && service apache2 restart
 
 
-COPY run.sh $HOME/start/
+
 # Run the server
 EXPOSE 80 443
-CMD ["/home/start/run.bash"]
+CMD ["/run.sh"]
