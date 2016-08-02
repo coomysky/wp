@@ -9,11 +9,15 @@ services:
       - 443:443
     volumes:
       - ./data:/data
+      - ./app/plugins/wd:/app/wp-content/plugins/wd # Plugin development
+      - ./app/themes/wd:/app/wp-content/themes/wd # Plugin development
     environment:
       DB_NAME: tests
       DB_PASS: root
-      PLUGINS: akismet
-      DEVELOPMENT_FOLDER: test22
+      PLUGINS: >-
+        akismet,
+        sidekick
+      DEVELOPMENT_FOLDER: wd
   db:
     image: mysql:5.7 # or mariadb
     ports:

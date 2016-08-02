@@ -137,10 +137,44 @@ chmod -R 775 /app/wp-content/uploads && \
 
 printf "Done!\n"
 
-if [ "$DEVELOPMENT_FOLDER" != false ]; then
-  printf "=> test"
+# change develop folder chmod
+# ---------------
+
+if [ "$DEVELOPMENT_FOLDER" ]; then
+  printf "=> Checking Develop Plugins Folder...\n"
+  while IFS=',' read -ra folder; do
+    for i in "${!folder[@]}"; do
+      folder_name=$(echo "${folder[$i]}" | xargs)
+      find /app/wp-content/plugins -name "$folder_name" -exec chmod -R 777 {} \;
+      if [ $? -eq 0 ]; then
+        printf "=> ($((i+1))/${#folder[@]}) Plugin '%s' found. SKIPPING...\n" "${folder_name}"
+      else
+        printf "=> ($((i+1))/${#folder[@]}) Plugin '%s' not found. Installing...\n" "${folder_name}"
+      fi
+    done
+  done <<< "$DEVELOPMENT_FOLDER"
 else
   printf "=> Oops!Ha"
+fi
+
+
+if [ "$DEVELOPMENT_FOLDER" ]; then
+  printf "=> Checking Develop Themes Folder...\n"
+  while IFS=',' read -ra folder; do
+    for i in "${!folder[@]}"; do
+      folder_name=$(echo "${folder[$i]}" | xargs)
+      find /app/wp-content/themes -name "$folder_name" -exec chmod -R 777 {} \;
+      if [ $? -eq 0 ]; then
+        printf "=> ($((i+1))/${#folder[@]}) Plugin '%s' found. SKIPPING...\n" "${folder_name}"
+      else
+        printf "=> ($((i+1))/${#folder[@]}) Plugin '%s' not found. Installing...\n" "${folder_name}"
+      fi
+    done
+  done <<< "$DEVELOPMENT_FOLDER"
+else
+  printf "=> Oops!Ha"
+fi
+
 # Install Plugins
 # ---------------
 if [ "$PLUGINS" ]; then
