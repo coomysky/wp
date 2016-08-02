@@ -22,4 +22,4 @@ COPY run.sh $HOME/start/
 
 # Run the server
 EXPOSE 80 443
-CMD ["/start/run.sh"]
+CMD ["/home/ubuntu/start/run.sh"]
