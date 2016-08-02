@@ -18,6 +18,8 @@ RUN curl \
     && a2enmod rewrite \
     && service apache2 restart
 
+
+COPY run.sh $HOME/start/
 # Run the server
 EXPOSE 80 443
-CMD ["/run.sh"]
+CMD ["/home/start/run.bash"]
