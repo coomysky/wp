@@ -66,7 +66,7 @@ done
 
 printf "\t%s\n" \
   "=======================================" \
-  "    Begin WordPress Configuration      " \
+  "    Begin WordPress Configuration 55555" \
   "======================================="
 
 
@@ -151,7 +151,18 @@ if [ "$DEVELOPMENT_FOLDER" ]; then
       else
         printf "=> ($((i+1))/${#folder[@]}) Plugin '%s' not found. Installing...\n" "${folder_name}"
       fi
+    done
+  done <<< "$DEVELOPMENT_FOLDER"
+else
+  printf "=> O.o no plugins? ..."
+fi
 
+
+if [ "$DEVELOPMENT_FOLDER" ]; then
+  printf "=> Checking Develop Themes Folder...\n"
+  while IFS=',' read -ra folder; do
+    for i in "${!folder[@]}"; do
+      folder_name=$(echo "${folder[$i]}" | xargs)
       find /app/wp-content/themes -name "$folder_name" -exec chmod -R 777 {} \;
       if [ $? -eq 0 ]; then
         printf "=> ($((i+1))/${#folder[@]}) Plugin '%s' found. SKIPPING...\n" "${folder_name}"
@@ -161,9 +172,8 @@ if [ "$DEVELOPMENT_FOLDER" ]; then
     done
   done <<< "$DEVELOPMENT_FOLDER"
 else
-  printf "=> Sure?.. \n check your DEVELOPMENT_FOLDER value"
+  printf "=> Sure?.. no themes? .."
 fi
-
 
 # Install Plugins
 # ---------------

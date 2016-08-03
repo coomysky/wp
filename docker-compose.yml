@@ -18,6 +18,8 @@ services:
         akismet,
         sidekick
       DEVELOPMENT_FOLDER: wd
+    networks:
+        - wd_network
   db:
     image: mysql:5.7 # or mariadb
     ports:
@@ -26,5 +28,12 @@ services:
       - data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
+    networks:
+        - wd_network
 volumes:
   data: {}
+
+networks:
+    wd_network:
+        driver:
+            bridge

@@ -1,5 +1,5 @@
 FROM tutum/apache-php
-MAINTAINER Karel Ledru-Mathe <karel@ledrumathe.com>
+MAINTAINER Coomy Chang 
 
 # Install mysql-client
 RUN apt-get update \
